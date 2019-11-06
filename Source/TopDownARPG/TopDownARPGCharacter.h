@@ -16,6 +16,7 @@ public:
 
 	// Called every frame.
 	virtual void Tick(float DeltaSeconds) override;
+	virtual void BeginPlay() override;
 
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
@@ -36,5 +37,13 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+	UPROPERTY(EditDefaultsOnly)
+	float Health;
+
+	UFUNCTION()
+	void TakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigateBy, AActor* DamageCauser);
+
+	void Death();
 };
 

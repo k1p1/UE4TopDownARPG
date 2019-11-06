@@ -4,6 +4,7 @@
 #include "TopDownARPGPlayerController.h"
 #include "TopDownARPGCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "TopDownARPG.h"
 
 ATopDownARPGGameMode::ATopDownARPGGameMode()
 {
@@ -16,4 +17,25 @@ ATopDownARPGGameMode::ATopDownARPGGameMode()
 	{
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
+}
+
+void ATopDownARPGGameMode::EndGame(bool IsWin)
+{
+	if (IsWin)
+	{
+		UE_LOG(LogTopDownARPG, Display, TEXT("Win"));
+	}
+	else
+	{
+		UE_LOG(LogTopDownARPG, Display, TEXT("Lose"));
+	}
+
+	GetWorld()->GetTimerManager().ClearTimer(LoseTimerHandle);
+}
+
+void ATopDownARPGGameMode::BeginPlay()
+{
+	LoseTimerDelegate.BindUObject(this, &ATopDownARPGGameMode::EndGame, false);
+
+	GetWorld()->GetTimerManager().SetTimer(LoseTimerHandle, LoseTimerDelegate, GameTimeInSeconds, false);
 }

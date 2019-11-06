@@ -11,6 +11,7 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "TopDownARPG.h"
 
 ATopDownARPGCharacter::ATopDownARPGCharacter()
 {
@@ -55,6 +56,15 @@ ATopDownARPGCharacter::ATopDownARPGCharacter()
 	// Activate ticking in order to update the cursor every frame.
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
+
+	OnTakeAnyDamage.AddDynamic(this, &ATopDownARPGCharacter::TakeAnyDamage);
+}
+
+void ATopDownARPGCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	Health = 100.0f;
 }
 
 void ATopDownARPGCharacter::Tick(float DeltaSeconds)
@@ -86,5 +96,23 @@ void ATopDownARPGCharacter::Tick(float DeltaSeconds)
 			CursorToWorld->SetWorldLocation(TraceHitResult.Location);
 			CursorToWorld->SetWorldRotation(CursorR);
 		}
+	}
+}
+
+void ATopDownARPGCharacter::TakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigateBy, AActor* DamageCauser)
+{
+	UE_LOG(LogTopDownARPG, Display, TEXT("ATopDownARPGCharacter::TakeAnyDamage current health = %f"), (Health - Damage));
+	Health -= Damage;
+	if (Health <= 0.0f)
+	{
+		Death();
+	}
+}
+
+void ATopDownARPGCharacter::Death()
+{
+	if (Destroy() == false)
+	{
+		UE_LOG(LogTopDownARPG, Error, TEXT("Trying to destroy indestructable object"));
 	}
 }
