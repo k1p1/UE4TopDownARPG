@@ -12,6 +12,7 @@
 #include "Materials/Material.h"
 #include "Engine/World.h"
 #include "TopDownARPG.h"
+#include "TopDownARPGGameMode.h"
 
 ATopDownARPGCharacter::ATopDownARPGCharacter()
 {
@@ -64,7 +65,7 @@ void ATopDownARPGCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Health = 100.0f;
+	Health = MaximumHealth;
 }
 
 void ATopDownARPGCharacter::Tick(float DeltaSeconds)
@@ -114,5 +115,11 @@ void ATopDownARPGCharacter::Death()
 	if (Destroy() == false)
 	{
 		UE_LOG(LogTopDownARPG, Error, TEXT("Trying to destroy indestructable object"));
+	}
+
+	ATopDownARPGGameMode* GameMode = Cast<ATopDownARPGGameMode>(GetWorld()->GetAuthGameMode());
+	if (IsValid(GameMode))
+	{
+		GameMode->EndGame(false);
 	}
 }

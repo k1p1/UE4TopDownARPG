@@ -39,6 +39,9 @@ private:
 	class UDecalComponent* CursorToWorld;
 
 	UPROPERTY(EditDefaultsOnly)
+	float MaximumHealth;
+
+	UPROPERTY(EditAnywhere)
 	float Health;
 
 	UFUNCTION()
