@@ -66,6 +66,11 @@ void ATopDownARPGCharacter::BeginPlay()
 	Super::BeginPlay();
 
 	Health = MaximumHealth;
+
+	for (const auto& Template : AbilityTemplates)
+	{
+		AbilityInstances.Add(NewObject<UAbility>(this, Template));
+	}
 }
 
 void ATopDownARPGCharacter::Tick(float DeltaSeconds)

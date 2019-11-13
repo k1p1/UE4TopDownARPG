@@ -32,11 +32,33 @@ void ATopDownARPGPlayerController::SetupInputComponent()
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ATopDownARPGPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("SetDestination", IE_Released, this, &ATopDownARPGPlayerController::OnSetDestinationReleased);
 
+
+	InputComponent->BindAction("Ability1", IE_Pressed, this, &ATopDownARPGPlayerController::ActivateAbility1);
+	InputComponent->BindAction("Ability2", IE_Pressed, this, &ATopDownARPGPlayerController::ActivateAbility2);
+
 	// support touch devices 
 	InputComponent->BindTouch(EInputEvent::IE_Pressed, this, &ATopDownARPGPlayerController::MoveToTouchLocation);
 	InputComponent->BindTouch(EInputEvent::IE_Repeat, this, &ATopDownARPGPlayerController::MoveToTouchLocation);
 
 	InputComponent->BindAction("ResetVR", IE_Pressed, this, &ATopDownARPGPlayerController::OnResetVR);
+}
+
+void ATopDownARPGPlayerController::ActivateAbility1()
+{
+	auto PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
+	if (PlayerCharacter->AbilityInstances.Num() > 0)
+	{
+		PlayerCharacter->AbilityInstances[0]->Activate(PlayerCharacter);
+	}
+}
+
+void ATopDownARPGPlayerController::ActivateAbility2()
+{
+	auto PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
+	if (PlayerCharacter->AbilityInstances.Num() > 1)
+	{
+		PlayerCharacter->AbilityInstances[1]->Activate(PlayerCharacter);
+	}
 }
 
 void ATopDownARPGPlayerController::OnResetVR()

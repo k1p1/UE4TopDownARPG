@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Ability.h"
 #include "TopDownARPGCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -25,6 +26,10 @@ public:
 	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
+
+
+	UPROPERTY()
+	TArray<UAbility*> AbilityInstances;
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -37,6 +42,9 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+	UPROPERTY(EditAnywhere)
+	TArray<TSubclassOf<UAbility>> AbilityTemplates;
 
 	UPROPERTY(EditDefaultsOnly)
 	float MaximumHealth;
