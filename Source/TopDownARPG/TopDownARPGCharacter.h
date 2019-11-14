@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Ability.h"
+#include "Abilities/Ability.h"
 #include "TopDownARPGCharacter.generated.h"
 
 UCLASS(Blueprintable)

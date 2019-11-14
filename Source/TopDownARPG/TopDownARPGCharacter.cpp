@@ -67,7 +67,7 @@ void ATopDownARPGCharacter::BeginPlay()
 
 	Health = MaximumHealth;
 
-	for (const auto& Template : AbilityTemplates)
+	for (const TSubclassOf<UAbility>& Template : AbilityTemplates)
 	{
 		AbilityInstances.Add(NewObject<UAbility>(this, Template));
 	}

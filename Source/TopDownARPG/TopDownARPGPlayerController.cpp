@@ -5,6 +5,7 @@
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "TopDownARPGCharacter.h"
+#include "TopDownARPG.h"
 #include "Engine/World.h"
 
 ATopDownARPGPlayerController::ATopDownARPGPlayerController()
@@ -45,19 +46,33 @@ void ATopDownARPGPlayerController::SetupInputComponent()
 
 void ATopDownARPGPlayerController::ActivateAbility1()
 {
-	auto PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
-	if (PlayerCharacter->AbilityInstances.Num() > 0)
+	ATopDownARPGCharacter* PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
+	if (IsValid(PlayerCharacter) == false)
 	{
-		PlayerCharacter->AbilityInstances[0]->Activate(PlayerCharacter);
+		UE_LOG(LogTopDownARPG, Error, TEXT("ATopDownARPGPlayerController::ActivateAbility1 IsValid(PlayerCharacter) == false"));
+		return;
+	}
+
+	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
+	if (IsValid(Ability))
+	{
+		Ability->Activate(PlayerCharacter);
 	}
 }
 
 void ATopDownARPGPlayerController::ActivateAbility2()
 {
-	auto PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
-	if (PlayerCharacter->AbilityInstances.Num() > 1)
+	ATopDownARPGCharacter* PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
+	if (IsValid(PlayerCharacter) == false)
 	{
-		PlayerCharacter->AbilityInstances[1]->Activate(PlayerCharacter);
+		UE_LOG(LogTopDownARPG, Error, TEXT("ATopDownARPGPlayerController::ActivateAbility1 IsValid(PlayerCharacter) == false"));
+		return;
+	}
+
+	UAbility* Ability = PlayerCharacter->AbilityInstances[1];
+	if (IsValid(Ability))
+	{
+		Ability->Activate(PlayerCharacter);
 	}
 }
 
