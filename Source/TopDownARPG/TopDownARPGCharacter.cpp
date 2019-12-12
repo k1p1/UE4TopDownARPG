@@ -117,10 +117,10 @@ void ATopDownARPGCharacter::TakeAnyDamage(AActor* DamagedActor, float Damage, co
 
 void ATopDownARPGCharacter::Death()
 {
-	if (Destroy() == false)
-	{
-		UE_LOG(LogTopDownARPG, Error, TEXT("Trying to destroy indestructable object"));
-	}
+	UCharacterMovementComponent* Movement = GetCharacterMovement();
+	Movement->MaxWalkSpeed = 0.0f;
+	Movement->bOrientRotationToMovement = false;
+
 
 	ATopDownARPGGameMode* GameMode = Cast<ATopDownARPGGameMode>(GetWorld()->GetAuthGameMode());
 	if (IsValid(GameMode))
