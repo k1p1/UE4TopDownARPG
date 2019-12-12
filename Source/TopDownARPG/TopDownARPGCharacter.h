@@ -26,6 +26,8 @@ public:
 	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 
+	FORCEINLINE float GetHealth() { return Health; }
+
 
 
 	UPROPERTY()
@@ -49,7 +51,7 @@ private:
 	UPROPERTY(EditDefaultsOnly)
 	float MaximumHealth;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float Health;
 
 	UFUNCTION()
