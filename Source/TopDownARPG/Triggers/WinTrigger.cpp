@@ -3,7 +3,7 @@
 
 #include "WinTrigger.h"
 #include "Components/SphereComponent.h"
-#include "TopDownARPGGameMode.h"
+#include "GameModes/TopDownARPGGameMode.h"
 
 AWinTrigger::AWinTrigger()
 {

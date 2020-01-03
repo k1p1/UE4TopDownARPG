@@ -2,7 +2,7 @@
 
 
 #include "EnemyAIController.h"
-#include "TopDownARPGCharacter.h"
+#include "Characters/TopDownARPGCharacter.h"
 #include "TopDownARPG.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"

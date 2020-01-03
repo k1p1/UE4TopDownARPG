@@ -2,7 +2,7 @@
 
 
 #include "Projectile.h"
-#include "TopDownARPGCharacter.h"
+#include "Characters/TopDownARPGCharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
