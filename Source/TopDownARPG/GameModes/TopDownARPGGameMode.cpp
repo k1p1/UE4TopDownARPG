@@ -1,9 +1,9 @@
 // Copyright 1998-2019 Epic Games, Inc. All Rights Reserved.
 
 #include "TopDownARPGGameMode.h"
-#include "TopDownARPGPlayerController.h"
-#include "TopDownARPGCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Controllers/TopDownARPGPlayerController.h"
+#include "Characters/TopDownARPGCharacter.h"
 #include "TopDownARPG.h"
 
 ATopDownARPGGameMode::ATopDownARPGGameMode()

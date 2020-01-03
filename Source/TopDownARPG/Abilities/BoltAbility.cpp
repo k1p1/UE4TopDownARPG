@@ -2,13 +2,16 @@
 
 
 #include "BoltAbility.h"
+#include "Engine/World.h"
 #include "Projectiles/Projectile.h"
 #include "TopDownARPG.h"
-#include "Engine/World.h"
 
-void UBoltAbility::Activate(AActor* Source)
+bool UBoltAbility::Activate(AActor* Source)
 {
-	Super::Activate(Source);
+	if (Super::Activate(Source) == false)
+	{
+		return false;
+	}
 
 	UWorld* World = GetWorld();
 	if (IsValid(World) == false)
@@ -26,6 +29,7 @@ void UBoltAbility::Activate(AActor* Source)
 	if (IsValid(Projectile) == false)
 	{
 		UE_LOG(LogTopDownARPG, Error, TEXT("UBoltAbility::Activate IsValid(Projectile) == false"));
-		return;
+		return false;
 	}
+	return true;
 }

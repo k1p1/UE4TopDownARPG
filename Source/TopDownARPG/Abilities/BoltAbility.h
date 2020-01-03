@@ -15,7 +15,7 @@ class TOPDOWNARPG_API UBoltAbility : public UAbility
 	GENERATED_BODY()
 
 public:
-	virtual void Activate(AActor* Source) override;
+	virtual bool Activate(AActor* Source) override;
 
 private:
 	UPROPERTY(EditDefaultsOnly)

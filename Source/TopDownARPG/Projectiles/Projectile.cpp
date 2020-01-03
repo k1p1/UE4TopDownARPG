@@ -2,10 +2,10 @@
 
 
 #include "Projectile.h"
-#include "TopDownARPGCharacter.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Characters/TopDownARPGCharacter.h"
 #include "TopDownARPG.h"
 
 // Sets default values

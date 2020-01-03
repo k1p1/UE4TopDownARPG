@@ -12,7 +12,7 @@
 #include "Materials/Material.h"
 #include "Engine/World.h"
 #include "TopDownARPG.h"
-#include "TopDownARPGGameMode.h"
+#include "GameModes/TopDownARPGGameMode.h"
 
 ATopDownARPGCharacter::ATopDownARPGCharacter()
 {

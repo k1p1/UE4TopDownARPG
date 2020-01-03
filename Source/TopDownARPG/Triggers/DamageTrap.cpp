@@ -4,8 +4,8 @@
 #include "DamageTrap.h"
 #include "Components/SphereComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "Characters/TopDownARPGCharacter.h"
 #include "TopDownARPG.h"
-#include "TopDownARPGCharacter.h"
 
 ADamageTrap::ADamageTrap()
 {	

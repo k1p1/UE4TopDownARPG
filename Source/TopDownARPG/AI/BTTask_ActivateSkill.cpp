@@ -2,7 +2,7 @@
 
 
 #include "BTTask_ActivateSkill.h"
-#include "EnemyAIController.h"
+#include "Controllers/EnemyAIController.h"
 
 EBTNodeResult::Type UBTTask_ActivateSkill::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {
