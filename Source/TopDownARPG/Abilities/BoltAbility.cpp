@@ -2,9 +2,9 @@
 
 
 #include "BoltAbility.h"
+#include "Engine/World.h"
 #include "Projectiles/Projectile.h"
 #include "TopDownARPG.h"
-#include "Engine/World.h"
 
 void UBoltAbility::Activate(AActor* Source)
 {

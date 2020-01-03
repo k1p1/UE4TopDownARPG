@@ -2,11 +2,11 @@
 
 
 #include "EnemyAIController.h"
-#include "Characters/TopDownARPGCharacter.h"
-#include "TopDownARPG.h"
 #include "BehaviorTree/BehaviorTree.h"
 #include "BehaviorTree/BehaviorTreeComponent.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include "Characters/TopDownARPGCharacter.h"
+#include "TopDownARPG.h"
 
 AEnemyAIController::AEnemyAIController()
 {
