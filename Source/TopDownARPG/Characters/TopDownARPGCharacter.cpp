@@ -65,9 +65,17 @@ void ATopDownARPGCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Health = MaximumHealth;
+	FTopDownARPGCharacterStruct* CharacterStruct = CharacterStatsRow.GetRow<FTopDownARPGCharacterStruct>(TEXT(""));
 
-	for (const TSubclassOf<UAbility>& Template : AbilityTemplates)
+	if (CharacterStruct == nullptr)
+	{
+		UE_LOG(LogTopDownARPG, Error, TEXT("ATopDownARPGCharacter::BeginPlay CharacterStruct != nullptr"));
+		return;
+	}
+
+	Health = CharacterStruct->MaximumHealth;
+
+	for (const TSubclassOf<UAbility>Template : CharacterStruct->AbilityTemplates)
 	{
 		AbilityInstances.Add(NewObject<UAbility>(this, Template));
 	}
