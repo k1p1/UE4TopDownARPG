@@ -17,11 +17,9 @@ class UAbility : public UObject
 public:
     UPROPERTY(EditAnywhere)
     float CooldownTime = 1.f;
-    UPROPERTY(EditAnywhere)
-    float CooldownTimeDilation = 1.f;
 
     UFUNCTION(BlueprintCallable)
-    virtual void Activate(AActor* Source);
+    virtual bool Activate(AActor* Source);
 
     UFUNCTION(BlueprintImplementableEvent)
     void OnActivateBlueprint(AActor* Source);
