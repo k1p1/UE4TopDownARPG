@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Abilities/Ability.h"
+#include "DataTables/TopDownARPGCharacterStruct.h"
 #include "TopDownARPGCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -47,6 +48,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UAbility>> AbilityTemplates;
+
+	UPROPERTY(EditAnywhere)
+	FDataTableRowHandle CharacterStatsRow;
 
 	UPROPERTY(EditDefaultsOnly)
 	float MaximumHealth;
