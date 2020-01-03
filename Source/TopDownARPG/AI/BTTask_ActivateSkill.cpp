@@ -7,10 +7,19 @@
 EBTNodeResult::Type UBTTask_ActivateSkill::ExecuteTask(UBehaviorTreeComponent & OwnerComp, uint8 * NodeMemory)
 {
 	AEnemyAIController* EnemyAIController = Cast<AEnemyAIController>(OwnerComp.GetOwner());
-	if (IsValid(EnemyAIController))
+	if (IsValid(EnemyAIController) == false)
 	{
-		EnemyAIController->ActivateAbility();
-		return EBTNodeResult::Succeeded;
+		return EBTNodeResult::Failed;
 	}
-	return EBTNodeResult::Failed;
+	
+	APawn* EnemyPawn = EnemyAIController->GetPawn();
+	if (IsValid(EnemyPawn) == false)
+	{
+		return EBTNodeResult::Failed;
+	}
+
+	FVector AimLocation = EnemyPawn->GetActorLocation() + EnemyPawn->GetActorForwardVector() * 100.0f;
+	EnemyAIController->ActivateAbility(AimLocation);
+
+	return EBTNodeResult::Succeeded;
 }
