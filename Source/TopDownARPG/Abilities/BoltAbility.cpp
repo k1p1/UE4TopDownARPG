@@ -6,9 +6,9 @@
 #include "Projectiles/Projectile.h"
 #include "TopDownARPG.h"
 
-bool UBoltAbility::Activate(AActor* Source)
+bool UBoltAbility::Activate(AActor* Source, FVector AimLocation)
 {
-	if (Super::Activate(Source) == false)
+	if (Super::Activate(Source, AimLocation) == false)
 	{
 		return false;
 	}
@@ -23,9 +23,13 @@ bool UBoltAbility::Activate(AActor* Source)
 	SpawnParameters.Owner = Source;
 	SpawnParameters.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	FVector SpawnLocation = Source->GetActorLocation() + Source->GetActorForwardVector() * 100.0f;
+	FVector Direction = AimLocation - Source->GetActorLocation();
+	Direction.Z = 0.0f;
+	Direction.Normalize();
 
-	AActor* Projectile = World->SpawnActor<AActor>(ProjectileClass, SpawnLocation, Source->GetActorRotation(), SpawnParameters);
+	FVector SpawnLocation = Source->GetActorLocation() + Direction * 100.0f;
+
+	AActor* Projectile = World->SpawnActor<AActor>(ProjectileClass, SpawnLocation, Direction.Rotation(), SpawnParameters);
 	if (IsValid(Projectile) == false)
 	{
 		UE_LOG(LogTopDownARPG, Error, TEXT("UBoltAbility::Activate IsValid(Projectile) == false"));

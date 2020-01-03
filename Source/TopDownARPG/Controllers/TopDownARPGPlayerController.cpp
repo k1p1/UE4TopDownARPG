@@ -57,7 +57,13 @@ void ATopDownARPGPlayerController::ActivateAbility1()
 	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
 	if (IsValid(Ability))
 	{
-		Ability->Activate(PlayerCharacter);
+		FHitResult Hit;
+		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+		if (Hit.bBlockingHit)
+		{
+			Ability->Activate(PlayerCharacter, Hit.ImpactPoint);
+		}
 	}
 }
 
@@ -73,7 +79,13 @@ void ATopDownARPGPlayerController::ActivateAbility2()
 	UAbility* Ability = PlayerCharacter->AbilityInstances[1];
 	if (IsValid(Ability))
 	{
-		Ability->Activate(PlayerCharacter);
+		FHitResult Hit;
+		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+		if (Hit.bBlockingHit)
+		{
+			Ability->Activate(PlayerCharacter, Hit.ImpactPoint);
+		}
 	}
 }
 

@@ -4,7 +4,7 @@
 #include "Ability.h"
 #include "TopDownARPG.h"
 
-bool UAbility::Activate(AActor* Source)
+bool UAbility::Activate(AActor* Source, FVector AimLocation)
 {
 	if (bIsOffCooldown == false)
 	{

@@ -27,5 +27,5 @@ class TOPDOWNARPG_API AEnemyAIController : public AAIController
 	class UBehaviorTreeComponent* BehaviourTreeComponent;
 
 public:
-	void ActivateAbility();
+	void ActivateAbility(FVector AimLocation);
 };

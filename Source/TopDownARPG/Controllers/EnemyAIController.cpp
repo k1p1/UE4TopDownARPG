@@ -25,7 +25,7 @@ void AEnemyAIController::OnPossess(APawn* Pawn)
 	}
 }
 
-void AEnemyAIController::ActivateAbility()
+void AEnemyAIController::ActivateAbility(FVector AimLocation)
 {
 	ATopDownARPGCharacter* PlayerCharacter = Cast<ATopDownARPGCharacter>(GetPawn());
 	if (IsValid(PlayerCharacter) == false)
@@ -37,6 +37,6 @@ void AEnemyAIController::ActivateAbility()
 	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
 	if (IsValid(Ability))
 	{
-		Ability->Activate(PlayerCharacter);
+		Ability->Activate(PlayerCharacter, AimLocation);
 	}
 }
