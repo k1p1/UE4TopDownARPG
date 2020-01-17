@@ -19,7 +19,7 @@ public:
     float CooldownTime = 1.f;
 
     UFUNCTION(BlueprintCallable)
-    virtual bool Activate(AActor* Source, FVector AimLocation);
+    virtual bool Activate(FVector AimLocation);
 
     UFUNCTION(BlueprintImplementableEvent)
     void OnActivateBlueprint(AActor* Source);

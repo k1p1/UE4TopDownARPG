@@ -37,6 +37,6 @@ void AEnemyAIController::ActivateAbility(FVector AimLocation)
 	UAbility* Ability = PlayerCharacter->AbilityInstances[0];
 	if (IsValid(Ability))
 	{
-		Ability->Activate(PlayerCharacter, AimLocation);
+		Ability->Activate(AimLocation);
 	}
 }
