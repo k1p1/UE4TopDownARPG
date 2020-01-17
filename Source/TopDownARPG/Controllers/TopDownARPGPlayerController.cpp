@@ -62,7 +62,7 @@ void ATopDownARPGPlayerController::ActivateAbility1()
 
 		if (Hit.bBlockingHit)
 		{
-			Ability->Activate(PlayerCharacter, Hit.ImpactPoint);
+			Ability->Activate(Hit.ImpactPoint);
 		}
 	}
 }
@@ -84,7 +84,7 @@ void ATopDownARPGPlayerController::ActivateAbility2()
 
 		if (Hit.bBlockingHit)
 		{
-			Ability->Activate(PlayerCharacter, Hit.ImpactPoint);
+			Ability->Activate(Hit.ImpactPoint);
 		}
 	}
 }

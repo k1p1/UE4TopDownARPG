@@ -4,7 +4,7 @@
 #include "Ability.h"
 #include "TopDownARPG.h"
 
-bool UAbility::Activate(AActor* Source, FVector AimLocation)
+bool UAbility::Activate(FVector AimLocation)
 {
 	if (bIsOffCooldown == false)
 	{
@@ -17,11 +17,19 @@ bool UAbility::Activate(AActor* Source, FVector AimLocation)
 		UE_LOG(LogTopDownARPG, Error, TEXT("UAbility::Activate IsValid(World) == false"));
 		return false;
 	}
+	
     TimerManager = &World->GetTimerManager();
     TimerManager->SetTimer(CooldownTimerHandle, this, &UAbility::OnCooldownTimerExpired, CooldownTime);
     bIsOffCooldown = false;
 
-    OnActivateBlueprint(Source);
+	AActor* Owner = Cast<AActor>(GetOuter());
+	if (IsValid(Owner) == false)
+	{
+		UE_LOG(LogTopDownARPG, Error, TEXT("UAbility::Activate IsValid(Owner) == false"));
+		return false;
+	}
+
+    OnActivateBlueprint(Owner);
 	return true;
 }
 
